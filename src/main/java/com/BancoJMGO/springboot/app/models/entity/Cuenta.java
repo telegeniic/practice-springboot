@@ -7,41 +7,39 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.springframework.lang.NonNull;
 
 @Entity
-@Table(name="cuentas")
-public class Cuenta implements Serializable{
+@Table(name = "cuentas")
+public class Cuenta implements Serializable {
 
 	private static final long serialVersionUID = 845809032924929098L;
 
-	@Column(name="numero_de_cuenta")
+	@Column(name = "numero_de_cuenta")
 	@NonNull
 	private String numeroDeCuenta;
-	
-	@Column(name="id_cuenta")
-	@NonNull
+
+	@Id
 	private String idCuenta;
-	
-	@Column(name="monto_minimo")
+
+	@Column(name = "monto_minimo")
 	@NonNull
 	private double montoMinimo;
-	
-	@Column(name="saldo_actual")
+
+	@Column(name = "saldo_actual")
 	@NonNull
 	private double saldoActual;
-	
+
 	@Column
 	@NonNull
 	private float porcentaje;
-	
-	
+
 	private List<Tarjeta> tarjetas;
-	
-	
+
 	private CasaInversionista oferta;
 
 	public String getNumeroDeCuenta() {
@@ -103,7 +101,5 @@ public class Cuenta implements Serializable{
 	public void setTarjetas(List<Tarjeta> tarjetas) {
 		this.tarjetas = tarjetas;
 	}
-	
-	
-	
+
 }

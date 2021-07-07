@@ -5,6 +5,7 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -12,25 +13,24 @@ import javax.persistence.Table;
 import org.springframework.lang.NonNull;
 
 @Entity
-@Table(name="tarjetas")
-public class Tarjeta implements Serializable{
+@Table(name = "tarjetas")
+public class Tarjeta implements Serializable {
 
 	private static final long serialVersionUID = 2564315752569370407L;
-	
-	@Column(name="id_tarjeta")
-	@NonNull
+
+	@Id
 	private String idTarjeta;
-	
-	@Column(name="numero_tarjeta", length=16)
+
+	@Column(name = "numero_tarjeta", length = 16)
 	@NonNull
 	private String numeroTarjeta;
-	
+
 	private Cuenta numeroDeCuenta;
-	
-	@Column(length=3)
+
+	@Column(length = 3)
 	@NonNull
 	private String icv;
-	
+
 	@Column
 	@NonNull
 	private String nombre;

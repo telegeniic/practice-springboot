@@ -4,33 +4,33 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.springframework.lang.NonNull;
 
 @Entity
-@Table(name="casa_inversionista")
-public class CasaInversionista implements Serializable{
+@Table(name = "casa_inversionista")
+public class CasaInversionista implements Serializable {
 
 	private static final long serialVersionUID = 2807010861862237240L;
-	
-	@Column(name="id_oferta")
-	@NonNull
+
+	@Id
 	private String idOferta;
-	
-	@Column(name="nombre_oferta")
+
+	@Column(name = "nombre_oferta")
 	@NonNull
 	private String nombreOferta;
-	
+
 	@Column
 	@NonNull
 	private float plazos;
-	
-	@Column(name="porcentaje_retorno")
+
+	@Column(name = "porcentaje_retorno")
 	@NonNull
 	private float porcentajeRetorno;
-	
-	@Column(name="monto_minimo")
+
+	@Column(name = "monto_minimo")
 	@NonNull
 	private double montoMinimo;
 
@@ -77,6 +77,5 @@ public class CasaInversionista implements Serializable{
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	
 
 }

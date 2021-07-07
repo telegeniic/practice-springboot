@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.springframework.lang.NonNull;
@@ -15,13 +16,12 @@ public class Banco implements Serializable{
 
 	private static final long serialVersionUID = 8979615319274357131L;
 	
-	@Column
-	@NonNull
-	private String sucursal;
+	@Id
+	private String id;
 	
 	@Column
 	@NonNull
-	private String id;
+	private String sucursal;
 	
 	@Column
 	@NonNull

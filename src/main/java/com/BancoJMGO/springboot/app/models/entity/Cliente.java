@@ -4,36 +4,36 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.springframework.lang.NonNull;
 
 @Entity
-@Table(name="clientes")
-public class Cliente implements Serializable{
+@Table(name = "clientes")
+public class Cliente implements Serializable {
 
 	private static final long serialVersionUID = -5578178149734565815L;
-	
-	@Column(name="id_user")
-	@NonNull
+
+	@Id
 	private String idUser;
-	
+
 	@Column
 	@NonNull
 	private String nombre;
-	
+
 	@Column
 	@NonNull
 	private String apellido;
-	
-	@Column(name="numero_telefonico")
+
+	@Column(name = "numero_telefonico")
 	@NonNull
 	private String numeroTelefonico;
-	
+
 	@Column
 	@NonNull
 	private String email;
-	
+
 	private String numeroDeCuenta;
 
 	public String getIdUser() {
@@ -87,7 +87,5 @@ public class Cliente implements Serializable{
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	
-	
 
 }
