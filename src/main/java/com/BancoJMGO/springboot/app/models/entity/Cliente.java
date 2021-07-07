@@ -34,8 +34,6 @@ public class Cliente implements Serializable{
 	@NonNull
 	private String email;
 	
-	@Column(name="numero_de_cuenta")
-	@NonNull
 	private String numeroDeCuenta;
 
 	public String getIdUser() {

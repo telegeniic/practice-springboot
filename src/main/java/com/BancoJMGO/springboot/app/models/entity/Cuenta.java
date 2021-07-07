@@ -1,9 +1,13 @@
 package com.BancoJMGO.springboot.app.models.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.springframework.lang.NonNull;
@@ -34,12 +38,10 @@ public class Cuenta implements Serializable{
 	@NonNull
 	private float porcentaje;
 	
-	@Column
-	@NonNull
-	private Tarjeta[] tarjetas;
 	
-	@Column
-	@NonNull
+	private List<Tarjeta> tarjetas;
+	
+	
 	private CasaInversionista oferta;
 
 	public String getNumeroDeCuenta() {
@@ -82,14 +84,6 @@ public class Cuenta implements Serializable{
 		this.porcentaje = porcentaje;
 	}
 
-	public Tarjeta[] getTarjetas() {
-		return tarjetas;
-	}
-
-	public void setTarjetas(Tarjeta[] tarjetas) {
-		this.tarjetas = tarjetas;
-	}
-
 	public CasaInversionista getOferta() {
 		return oferta;
 	}
@@ -101,6 +95,15 @@ public class Cuenta implements Serializable{
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+
+	public List<Tarjeta> getTarjetas() {
+		return tarjetas;
+	}
+
+	public void setTarjetas(List<Tarjeta> tarjetas) {
+		this.tarjetas = tarjetas;
+	}
+	
 	
 	
 }

@@ -27,8 +27,6 @@ public class Banco implements Serializable{
 	@NonNull
 	private String ubicacion;
 	
-	@Column(name="cantidad_de_empleados")
-	@NonNull
 	private Empleado[] cantidadDeEmpleados;
 	
 	

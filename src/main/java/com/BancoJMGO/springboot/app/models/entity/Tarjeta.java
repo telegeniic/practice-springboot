@@ -4,6 +4,9 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.springframework.lang.NonNull;
@@ -22,9 +25,7 @@ public class Tarjeta implements Serializable{
 	@NonNull
 	private String numeroTarjeta;
 	
-	@Column(name="numero_de_cuenta")
-	@NonNull
-	private String numeroDeCuenta;
+	private Cuenta numeroDeCuenta;
 	
 	@Column(length=3)
 	@NonNull
@@ -50,11 +51,11 @@ public class Tarjeta implements Serializable{
 		this.numeroTarjeta = numeroTarjeta;
 	}
 
-	public String getNumeroDeCuenta() {
+	public Cuenta getNumeroDeCuenta() {
 		return numeroDeCuenta;
 	}
 
-	public void setNumeroDeCuenta(String numeroDeCuenta) {
+	public void setNumeroDeCuenta(Cuenta numeroDeCuenta) {
 		this.numeroDeCuenta = numeroDeCuenta;
 	}
 
