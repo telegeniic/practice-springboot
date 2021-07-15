@@ -8,7 +8,10 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.springframework.lang.NonNull;
@@ -24,6 +27,7 @@ public class Cuenta implements Serializable {
 	private String numeroDeCuenta;
 
 	@Id
+	@Column(name = "id_cuenta")
 	private String idCuenta;
 
 	@Column(name = "monto_minimo")
@@ -38,9 +42,33 @@ public class Cuenta implements Serializable {
 	@NonNull
 	private float porcentaje;
 
+	private CasaInversionista oferta;
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "cuenta", cascade = CascadeType.MERGE)
 	private List<Tarjeta> tarjetas;
 
-	private CasaInversionista oferta;
+	@OneToOne(fetch = FetchType.LAZY, mappedBy = "cuenta", cascade = CascadeType.MERGE)
+	private Cliente cliente;
+
+	@JoinColumn(name = "casa_inversionista", referencedColumnName = "id_oferta", nullable = false)
+	@ManyToOne(optional = false, fetch = FetchType.LAZY)
+	private CasaInversionista casaInversionista;
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+
+	public CasaInversionista getCasaInversionista() {
+		return casaInversionista;
+	}
+
+	public void setCasaInversionista(CasaInversionista casaInversionista) {
+		this.casaInversionista = casaInversionista;
+	}
 
 	public String getNumeroDeCuenta() {
 		return numeroDeCuenta;

@@ -4,8 +4,11 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Table;
+import javax.persistence.ManyToOne;
 
 import org.springframework.lang.NonNull;
 
@@ -16,6 +19,7 @@ public class Empleado implements Serializable {
 	private static final long serialVersionUID = 6063399286153691001L;
 
 	@Id
+	@Column(name = "id_empleado")
 	private String idEmpleado;
 
 	@Column
@@ -33,6 +37,18 @@ public class Empleado implements Serializable {
 	@Column
 	@NonNull
 	private int antiguedad;
+
+	@JoinColumn(name = "banco", referencedColumnName = "id_banco", nullable = false)
+	@ManyToOne(optional = false, fetch = FetchType.LAZY)
+	private Banco banco;
+
+	public Banco getBanco() {
+		return banco;
+	}
+
+	public void setBanco(Banco banco) {
+		this.banco = banco;
+	}
 
 	public String getIdEmpleado() {
 		return idEmpleado;

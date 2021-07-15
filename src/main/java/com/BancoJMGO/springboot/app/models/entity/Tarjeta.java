@@ -19,13 +19,16 @@ public class Tarjeta implements Serializable {
 	private static final long serialVersionUID = 2564315752569370407L;
 
 	@Id
+	@Column(name = "id_tarjeta")
 	private String idTarjeta;
 
 	@Column(name = "numero_tarjeta", length = 16)
 	@NonNull
 	private String numeroTarjeta;
 
-	private Cuenta numeroDeCuenta;
+	@Column(name = "numedo_de_cuenta")
+	@NonNull
+	private String numeroDeCuenta;
 
 	@Column(length = 3)
 	@NonNull
@@ -34,6 +37,18 @@ public class Tarjeta implements Serializable {
 	@Column
 	@NonNull
 	private String nombre;
+
+	@JoinColumn(name = "tarjeta", referencedColumnName = "id_cuenta", nullable = false)
+	@ManyToOne(optional = false, fetch = FetchType.LAZY)
+	private Cuenta cuenta;
+
+	public Cuenta getCuenta() {
+		return this.cuenta;
+	}
+
+	public void setCuenta(Cuenta cuenta) {
+		this.cuenta = cuenta;
+	}
 
 	public String getIdTarjeta() {
 		return idTarjeta;
@@ -51,11 +66,11 @@ public class Tarjeta implements Serializable {
 		this.numeroTarjeta = numeroTarjeta;
 	}
 
-	public Cuenta getNumeroDeCuenta() {
+	public String getNumeroDeCuenta() {
 		return numeroDeCuenta;
 	}
 
-	public void setNumeroDeCuenta(Cuenta numeroDeCuenta) {
+	public void setNumeroDeCuenta(String numeroDeCuenta) {
 		this.numeroDeCuenta = numeroDeCuenta;
 	}
 

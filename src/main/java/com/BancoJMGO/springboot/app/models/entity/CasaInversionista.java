@@ -1,10 +1,14 @@
 package com.BancoJMGO.springboot.app.models.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.CascadeType;
+import javax.persistence.FetchType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.springframework.lang.NonNull;
@@ -16,6 +20,7 @@ public class CasaInversionista implements Serializable {
 	private static final long serialVersionUID = 2807010861862237240L;
 
 	@Id
+	@Column(name = "id_oferta")
 	private String idOferta;
 
 	@Column(name = "nombre_oferta")
@@ -33,6 +38,17 @@ public class CasaInversionista implements Serializable {
 	@Column(name = "monto_minimo")
 	@NonNull
 	private double montoMinimo;
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "casaInversionista", cascade = CascadeType.MERGE)
+	private List<Cuenta> cuentas;
+
+	public List<Cuenta> getCuentas() {
+		return cuentas;
+	}
+
+	public void setCuentas(List<Cuenta> cuentas) {
+		this.cuentas = cuentas;
+	}
 
 	public String getIdOferta() {
 		return idOferta;
