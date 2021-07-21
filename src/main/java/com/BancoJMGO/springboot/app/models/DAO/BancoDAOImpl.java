@@ -5,10 +5,12 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.BancoJMGO.springboot.app.models.entity.Banco;
 
+@Repository
 public class BancoDAOImpl implements IBancoDAO{
 	
 	@PersistenceContext

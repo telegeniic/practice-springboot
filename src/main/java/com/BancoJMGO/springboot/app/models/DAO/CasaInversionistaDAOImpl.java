@@ -3,10 +3,13 @@ package com.BancoJMGO.springboot.app.models.DAO;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.BancoJMGO.springboot.app.models.entity.CasaInversionista;
 
+@Repository
 public class CasaInversionistaDAOImpl implements ICasaInversionistaDAO {
 
     @PersistenceContext

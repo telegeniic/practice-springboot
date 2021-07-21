@@ -7,8 +7,10 @@ import javax.persistence.PersistenceContext;
 
 import com.BancoJMGO.springboot.app.models.entity.Cuenta;
 
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+@Repository
 public class CuentaDAOImpl implements ICuentaDAO {
 
     @PersistenceContext
