@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 import javax.persistence.ManyToOne;
 
 import org.springframework.lang.NonNull;
@@ -27,30 +28,37 @@ public class Cliente implements Serializable {
 
 	@Column
 	@NonNull
+	@NotEmpty
 	private String nombre;
 
 	@Column
 	@NonNull
+	@NotEmpty
 	private String apellido;
 
 	@Column(name = "numero_telefonico")
 	@NonNull
+	@NotEmpty
 	private String numeroTelefonico;
 
 	@Column
 	@NonNull
+	@NotEmpty
 	private String email;
 
 	@Column(name = "numero_de_cuenta")
 	@NonNull
+	@NotEmpty
 	private String numeroDeCuenta;
 
 	@JoinColumn(name = "banco", referencedColumnName = "id_banco", nullable = false)
 	@ManyToOne(optional = false, fetch = FetchType.LAZY)
+	@NonNull
 	private Banco banco;
 
 	@JoinColumn(name = "cuenta", referencedColumnName = "id_cuenta", nullable = false)
 	@OneToOne(optional = false, fetch = FetchType.LAZY)
+	@NonNull
 	private Cuenta cuenta;
 
 	public Banco getBanco() {

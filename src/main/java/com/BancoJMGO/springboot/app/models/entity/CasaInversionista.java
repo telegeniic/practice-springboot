@@ -12,6 +12,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 import org.springframework.lang.NonNull;
 
@@ -27,21 +28,26 @@ public class CasaInversionista implements Serializable {
 
 	@Column(name = "nombre_oferta")
 	@NonNull
+	@NotEmpty
 	private String nombreOferta;
 
 	@Column
 	@NonNull
+	@NotEmpty
 	private float plazos;
 
 	@Column(name = "porcentaje_retorno")
 	@NonNull
+	@NotEmpty
 	private float porcentajeRetorno;
 
 	@Column(name = "monto_minimo")
 	@NonNull
+	@NotEmpty
 	private double montoMinimo;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "casaInversionista", cascade = CascadeType.MERGE)
+	@NonNull
 	private List<Cuenta> cuentas;
 
 	public List<Cuenta> getCuentas() {

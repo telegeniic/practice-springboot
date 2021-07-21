@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 import org.springframework.lang.NonNull;
 
@@ -26,22 +27,27 @@ public class Tarjeta implements Serializable {
 
 	@Column(name = "numero_tarjeta", length = 16)
 	@NonNull
+	@NotEmpty
 	private String numeroTarjeta;
 
 	@Column(name = "numedo_de_cuenta")
 	@NonNull
+	@NotEmpty
 	private String numeroDeCuenta;
 
 	@Column(length = 3)
 	@NonNull
+	@NotEmpty
 	private String icv;
 
 	@Column
 	@NonNull
+	@NotEmpty
 	private String nombre;
 
 	@JoinColumn(name = "tarjeta", referencedColumnName = "id_cuenta", nullable = false)
 	@ManyToOne(optional = false, fetch = FetchType.LAZY)
+	@NonNull
 	private Cuenta cuenta;
 
 	public Cuenta getCuenta() {

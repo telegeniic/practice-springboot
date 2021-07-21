@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 import javax.persistence.CascadeType;
 
 import org.springframework.lang.NonNull;
@@ -27,20 +28,25 @@ public class Banco implements Serializable {
 
 	@Column
 	@NonNull
+	@NotEmpty
 	private String sucursal;
 
 	@Column
-	@NonNull
+	@NotEmpty
+	@NotEmpty
 	private String ubicacion;
 
 	@Column(name = "cantidad_de_empleados")
 	@NonNull
+	@NotEmpty
 	private Empleado[] cantidadDeEmpleados;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "banco", cascade = CascadeType.MERGE)
+	@NonNull
 	private List<Cliente> clientes;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "banco", cascade = CascadeType.MERGE)
+	@NonNull
 	private List<Empleado> empleados;
 	
 	

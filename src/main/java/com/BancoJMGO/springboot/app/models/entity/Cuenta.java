@@ -15,6 +15,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 import org.springframework.lang.NonNull;
 
@@ -26,6 +27,7 @@ public class Cuenta implements Serializable {
 
 	@Column(name = "numero_de_cuenta")
 	@NonNull
+	@NotEmpty
 	private String numeroDeCuenta;
 
 	@Id
@@ -34,17 +36,18 @@ public class Cuenta implements Serializable {
 
 	@Column(name = "monto_minimo")
 	@NonNull
+	@NotEmpty
 	private double montoMinimo;
 
 	@Column(name = "saldo_actual")
 	@NonNull
+	@NotEmpty
 	private double saldoActual;
 
 	@Column
 	@NonNull
+	@NotEmpty
 	private float porcentaje;
-
-	private CasaInversionista oferta;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "cuenta", cascade = CascadeType.MERGE)
 	private List<Tarjeta> tarjetas;
@@ -110,14 +113,6 @@ public class Cuenta implements Serializable {
 
 	public void setPorcentaje(float porcentaje) {
 		this.porcentaje = porcentaje;
-	}
-
-	public CasaInversionista getOferta() {
-		return oferta;
-	}
-
-	public void setOferta(CasaInversionista oferta) {
-		this.oferta = oferta;
 	}
 
 	public static long getSerialversionuid() {

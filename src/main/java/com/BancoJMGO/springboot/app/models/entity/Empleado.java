@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 import javax.persistence.ManyToOne;
 
 import org.springframework.lang.NonNull;
@@ -26,22 +27,27 @@ public class Empleado implements Serializable {
 
 	@Column
 	@NonNull
+	@NotEmpty
 	private String nombre;
 
 	@Column
 	@NonNull
+	@NotEmpty
 	private String apellido;
 
 	@Column
 	@NonNull
+	@NotEmpty
 	private String puesto;
 
 	@Column
 	@NonNull
+	@NotEmpty
 	private int antiguedad;
 
 	@JoinColumn(name = "banco", referencedColumnName = "id_banco", nullable = false)
 	@ManyToOne(optional = false, fetch = FetchType.LAZY)
+	@NonNull
 	private Banco banco;
 
 	public Banco getBanco() {
