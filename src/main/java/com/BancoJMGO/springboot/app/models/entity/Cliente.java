@@ -5,6 +5,8 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -20,8 +22,8 @@ public class Cliente implements Serializable {
 	private static final long serialVersionUID = -5578178149734565815L;
 
 	@Id
-	@Column(name = "id_user")
-	private String idUser;
+	@GeneratedValue(strategy = GenerationType.IDENTITY) 
+	private Long id;
 
 	@Column
 	@NonNull
@@ -67,12 +69,12 @@ public class Cliente implements Serializable {
 		this.cuenta = cuenta;
 	}
 
-	public String getIdUser() {
-		return idUser;
+	public Long getId() {
+		return id;
 	}
 
-	public void setIdUser(String idUser) {
-		this.idUser = idUser;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getNombre() {

@@ -26,7 +26,7 @@ public class ClienteDAOImpl implements IClienteDAO {
     @Transactional
     @Override
     public void save(Cliente cliente) {
-        if (cliente.getIdUser() != null) {
+        if (cliente.getId() != null && cliente.getId() > 0) {
             em.merge(cliente);
         } else {
             em.persist(cliente);
@@ -35,14 +35,21 @@ public class ClienteDAOImpl implements IClienteDAO {
 
     @Transactional(readOnly = true)
     @Override
-    public Cliente findOne(String id) {
+    public Cliente findOne(Long id) {
         return em.find(Cliente.class, id);
     }
 
     @Transactional
     @Override
-    public void delete(String id) {
+    public void delete(Long id) {
         em.remove(findOne(id));
     }
+
+    @Transactional(readOnly = true)
+	@Override
+	public Cliente findByPhone(String phone) {
+		// TODO Auto-generated method stub
+		return (Cliente) em.createQuery("SELECT numero_telefonico FROM clientes WHERE numero_telefonico = :value").setParameter("value", phone).getSingleResult();
+	}
 
 }

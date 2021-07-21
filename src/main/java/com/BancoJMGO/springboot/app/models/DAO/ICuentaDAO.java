@@ -10,7 +10,7 @@ public interface ICuentaDAO {
 
     public void save(Cuenta banco);
 
-    public Cuenta findOne(String id);
+    public Cuenta findOne(Long id);
 
-    public void delete(String id);
+    public void delete(Long id);
 }

@@ -7,6 +7,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -27,8 +29,8 @@ public class Cuenta implements Serializable {
 	private String numeroDeCuenta;
 
 	@Id
-	@Column(name = "id_cuenta")
-	private String idCuenta;
+	@GeneratedValue(strategy = GenerationType.IDENTITY) 
+	private Long id;
 
 	@Column(name = "monto_minimo")
 	@NonNull
@@ -78,12 +80,12 @@ public class Cuenta implements Serializable {
 		this.numeroDeCuenta = numeroDeCuenta;
 	}
 
-	public String getIdCuenta() {
-		return idCuenta;
+	public Long getId() {
+		return id;
 	}
 
-	public void setIdCuenta(String idCuenta) {
-		this.idCuenta = idCuenta;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public double getMontoMinimo() {

@@ -26,21 +26,31 @@ public class EmpleadoDAOImpl implements IEmpleadoDAO {
     @Transactional
     @Override
     public void save(Empleado empleado) {
-        if (empleado.getIdEmpleado() != null) {
+        if (empleado.getId() != null && empleado.getId() > 0) {
             em.merge(empleado);
         } else {
             em.persist(empleado);
         }
     }
 
+    @Transactional(readOnly = true)
     @Override
-    public Empleado findOne(String id) {
+    public Empleado findOne(Long id) {
         return em.find(Empleado.class, id);
     }
 
+    @Transactional
     @Override
-    public void delete(String id) {
+    public void delete(Long id) {
         em.remove(findOne(id));
     }
+
+    @SuppressWarnings("unchecked")
+	@Transactional(readOnly = true)
+	@Override
+	public List<Empleado> findByCharge(String Charge) {
+		// TODO Auto-generated method stub
+		return em.createQuery("SELECT puesto FROM empleados WHERE puesto = :value").setParameter("value", Charge).getResultList();
+	}
 
 }

@@ -10,7 +10,7 @@ public interface ICasaInversionistaDAO {
 
 	public void save(CasaInversionista banco);
 
-	public CasaInversionista findOne(String id);
+	public CasaInversionista findOne(Long id);
 
-	public void delete(String id);
+	public void delete(Long id);
 }

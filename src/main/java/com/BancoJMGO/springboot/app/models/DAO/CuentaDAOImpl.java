@@ -26,21 +26,22 @@ public class CuentaDAOImpl implements ICuentaDAO {
     @Transactional
     @Override
     public void save(Cuenta cuenta) {
-        if (cuenta.getIdCuenta() != null) {
+        if (cuenta.getId() != null && cuenta.getId() > 0) {
             em.merge(cuenta);
         } else {
             em.persist(cuenta);
         }
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     @Override
-    public Cuenta findOne(String id) {
+    public Cuenta findOne(Long id) {
         return em.find(Cuenta.class, id);
     }
 
+    @Transactional
     @Override
-    public void delete(String id) {
+    public void delete(Long id) {
         em.remove(findOne(id));
     }
 

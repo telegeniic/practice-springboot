@@ -10,7 +10,9 @@ public interface IClienteDAO {
 
     public void save(Cliente banco);
 
-    public Cliente findOne(String id);
+    public Cliente findOne(Long id);
 
-    public void delete(String id);
+    public void delete(Long id);
+    
+    public Cliente findByPhone(String phone);
 }

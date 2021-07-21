@@ -6,6 +6,8 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -20,8 +22,8 @@ public class Banco implements Serializable {
 	private static final long serialVersionUID = 8979615319274357131L;
 
 	@Id
-	@Column(name = "id_banco")
-	private String id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY) 
+	private Long id;
 
 	@Column
 	@NonNull
@@ -40,6 +42,16 @@ public class Banco implements Serializable {
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "banco", cascade = CascadeType.MERGE)
 	private List<Empleado> empleados;
+	
+	
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public List<Cliente> getClientes() {
 		return clientes;
@@ -67,14 +79,6 @@ public class Banco implements Serializable {
 
 	public void setSucursal(String sucursal) {
 		this.sucursal = sucursal;
-	}
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
 	}
 
 	public String getUbicacion() {

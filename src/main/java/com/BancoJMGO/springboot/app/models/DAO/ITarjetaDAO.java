@@ -10,8 +10,10 @@ public interface ITarjetaDAO {
 
     public void save(Tarjeta banco);
 
-    public Tarjeta findOne(String id);
+    public Tarjeta findOne(Long id);
 
-    public void delete(String id);
+    public void delete(Long id);
+    
+    public Tarjeta findByAccountNumber(String AccountNumber);
 
 }

@@ -25,7 +25,7 @@ public class CasaInversionistaDAOImpl implements ICasaInversionistaDAO {
     @Transactional
     @Override
     public void save(CasaInversionista casaInversionista) {
-        if (casaInversionista.getIdOferta() != null) {
+        if (casaInversionista.getId() != null && casaInversionista.getId() > 0) {
             em.merge(casaInversionista);
         } else {
             em.persist(casaInversionista);
@@ -35,13 +35,13 @@ public class CasaInversionistaDAOImpl implements ICasaInversionistaDAO {
 
     @Transactional(readOnly = true)
     @Override
-    public CasaInversionista findOne(String id) {
+    public CasaInversionista findOne(Long id) {
         return em.find(CasaInversionista.class, id);
     }
 
     @Transactional
     @Override
-    public void delete(String id) {
+    public void delete(Long id) {
         em.remove(findOne(id));
 
     }

@@ -6,6 +6,8 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.CascadeType;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -20,8 +22,8 @@ public class CasaInversionista implements Serializable {
 	private static final long serialVersionUID = 2807010861862237240L;
 
 	@Id
-	@Column(name = "id_oferta")
-	private String idOferta;
+	@GeneratedValue(strategy = GenerationType.IDENTITY) 
+	private Long id;
 
 	@Column(name = "nombre_oferta")
 	@NonNull
@@ -50,12 +52,12 @@ public class CasaInversionista implements Serializable {
 		this.cuentas = cuentas;
 	}
 
-	public String getIdOferta() {
-		return idOferta;
+	public Long getId() {
+		return id;
 	}
 
-	public void setIdOferta(String idOferta) {
-		this.idOferta = idOferta;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getNombreOferta() {

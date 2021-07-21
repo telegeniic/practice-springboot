@@ -26,7 +26,7 @@ public class TarjetaDAOImpl implements ITarjetaDAO {
     @Transactional
     @Override
     public void save(Tarjeta tarjeta) {
-        if (tarjeta.getIdTarjeta() != null) {
+        if (tarjeta.getId() != null && tarjeta.getId() > 0) {
             em.merge(tarjeta);
         } else {
             em.persist(tarjeta);
@@ -35,14 +35,20 @@ public class TarjetaDAOImpl implements ITarjetaDAO {
 
     @Transactional(readOnly = true)
     @Override
-    public Tarjeta findOne(String id) {
+    public Tarjeta findOne(Long id) {
         return em.find(Tarjeta.class, id);
     }
 
     @Transactional
     @Override
-    public void delete(String id) {
+    public void delete(Long id) {
         em.remove(findOne(id));
     }
+
+    @Transactional(readOnly = true)
+	@Override
+	public Tarjeta findByAccountNumber(String AccountNumber) {
+		return (Tarjeta) em.createQuery("SELECT numedo_de_cuenta FROM tarjetas WHERE numedo_de_cuenta = :value").setParameter("value", AccountNumber).getSingleResult();
+	}
 
 }

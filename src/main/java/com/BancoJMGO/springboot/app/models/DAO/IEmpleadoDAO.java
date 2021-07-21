@@ -10,7 +10,9 @@ public interface IEmpleadoDAO {
 
     public void save(Empleado banco);
 
-    public Empleado findOne(String id);
+    public Empleado findOne(Long id);
 
-    public void delete(String id);
+    public void delete(Long id);
+    
+    public List<Empleado> findByCharge(String Charge);
 }

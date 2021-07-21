@@ -10,8 +10,8 @@ public interface IBancoDAO {
 	
 	public void save(Banco banco);
 	
-	public Banco findOne(String id);
+	public Banco findOne(Long id);
 	
-	public void delete(String id);
+	public void delete(Long id);
 	
 }
