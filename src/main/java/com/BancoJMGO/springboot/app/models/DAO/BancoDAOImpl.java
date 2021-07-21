@@ -20,7 +20,7 @@ public class BancoDAOImpl implements IBancoDAO{
 	@Transactional(readOnly = true)
 	@Override
 	public List<Banco> findALL() {
-		return em.createQuery("from Banco").getResultList();
+		return em.createQuery("from bancos").getResultList();
 	}
 
 	@Transactional

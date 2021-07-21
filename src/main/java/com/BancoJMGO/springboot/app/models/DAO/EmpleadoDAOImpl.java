@@ -20,7 +20,7 @@ public class EmpleadoDAOImpl implements IEmpleadoDAO {
     @Transactional(readOnly = true)
     @Override
     public List<Empleado> findALL() {
-        return em.createQuery("from Empleado").getResultList();
+        return em.createQuery("from empleados").getResultList();
     }
 
     @Transactional

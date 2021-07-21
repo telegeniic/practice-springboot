@@ -19,7 +19,7 @@ public class CasaInversionistaDAOImpl implements ICasaInversionistaDAO {
     @Transactional(readOnly = true)
     @Override
     public List<CasaInversionista> findALL() {
-        return em.createQuery("from CasaInversionista").getResultList();
+        return em.createQuery("from casa_inversionista").getResultList();
     }
 
     @Transactional

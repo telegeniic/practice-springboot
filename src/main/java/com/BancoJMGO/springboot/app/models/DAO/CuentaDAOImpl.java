@@ -20,7 +20,7 @@ public class CuentaDAOImpl implements ICuentaDAO {
     @Transactional(readOnly = true)
     @Override
     public List<Cuenta> findALL() {
-        return em.createQuery("from Cuenta").getResultList();
+        return em.createQuery("from cuentas").getResultList();
     }
 
     @Transactional
