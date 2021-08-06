@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title th:text="${titulo}"></title>
+	</head>
+	<body>
+	
+		<h3 th:text="${titulo}"></h3>
+		<br>
+	
+		<p th:if="${result}" th:text="${mensaje}"></p>
+		
+		<div>
+			<form th:action="@{/empleado/form}" th:object="${empleado}" method="post">
+				<table>
+					<tr>
+						<td>Nombre</td>
+						<td><input type="text" th:field="*{nombre}"></td>
+					</tr>
+					<tr>
+						<td>Apellidos</td>
+						<td><input type="text" th:field="*{apellido}"></td>
+					</tr>
+					<tr>
+						<td>Puesto</td>
+						<td><input type="text" th:field="*{puesto}"></td>
+					</tr>
+					<tr>
+						<td>Antiguedad</td>
+						<td><input type="text" th:field="*{antiguedad}"></td>
+					</tr>
+					<tr>
+						<td>Banco</td>
+						<td><select name="" id="" th:field="*{idBancoAux}">
+							<option 
+								th:each="banco : ${bancos}" 
+								th:value="${banco.getId()}" 
+								th:text="${banco.getId()+' Nombre: '+banco.getSucursal()}"
+							></option>
+						</select></td>
+					</tr>
+				</table>
+				<br>
+				<input type="submit" value="Guardar">
+			</form>
+		</div>
+		<a href="/empleado/list">Lista</a>
+		<a href="/">Index</a>
+		
+	</body>
+</html>

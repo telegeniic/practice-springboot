@@ -15,9 +15,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotEmpty;
-
-import org.springframework.lang.NonNull;
 
 @Entity
 @Table(name = "cuentas")
@@ -26,38 +23,50 @@ public class Cuenta implements Serializable {
 	private static final long serialVersionUID = 845809032924929098L;
 
 	@Column(name = "numero_de_cuenta")
-	@NonNull
-	@NotEmpty
 	private String numeroDeCuenta;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY) 
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@Column(name = "monto_minimo")
-	@NonNull
-	@NotEmpty
 	private double montoMinimo;
 
 	@Column(name = "saldo_actual")
-	@NonNull
-	@NotEmpty
 	private double saldoActual;
-
-	@Column
-	@NonNull
-	@NotEmpty
-	private float porcentaje;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "cuenta", cascade = CascadeType.MERGE)
 	private List<Tarjeta> tarjetas;
 
-	@OneToOne(fetch = FetchType.LAZY, mappedBy = "cuenta", cascade = CascadeType.MERGE)
+	@JoinColumn(name = "cliente", referencedColumnName = "id", nullable = true)
+	@OneToOne(optional = false, fetch = FetchType.LAZY)
 	private Cliente cliente;
 
-	@JoinColumn(name = "casa_inversionista", referencedColumnName = "id_oferta", nullable = false)
+	@Column
+	private long idClienteAux;
+
+	@JoinColumn(name = "casa_inversionista", referencedColumnName = "id", nullable = true)
 	@ManyToOne(optional = false, fetch = FetchType.LAZY)
 	private CasaInversionista casaInversionista;
+
+	@Column
+	private long idCasaInversionistaAux;
+
+	public long getIdClienteAux() {
+		return idClienteAux;
+	}
+
+	public void setIdClienteAux(long idClienteAux) {
+		this.idClienteAux = idClienteAux;
+	}
+
+	public long getIdCasaInversionistaAux() {
+		return idCasaInversionistaAux;
+	}
+
+	public void setIdCasaInversionistaAux(long idCasaInversionistaAux) {
+		this.idCasaInversionistaAux = idCasaInversionistaAux;
+	}
 
 	public Cliente getCliente() {
 		return cliente;
@@ -105,14 +114,6 @@ public class Cuenta implements Serializable {
 
 	public void setSaldoActual(double saldoActual) {
 		this.saldoActual = saldoActual;
-	}
-
-	public float getPorcentaje() {
-		return porcentaje;
-	}
-
-	public void setPorcentaje(float porcentaje) {
-		this.porcentaje = porcentaje;
 	}
 
 	public static long getSerialversionuid() {

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title th:text="${titulo}"></title>
+</head>
+<body>
+
+	<h3 th:text="${titulo}"></h3>
+	<br>
+
+	<p th:if="${bancos.isEmpty()}"> La Lista esta vacia </p>
+
+	<a href="form">Nuevo Campo</a>
+	<a href="/">Index</a>
+	
+	<table>
+		<thead>
+			<tr>
+				<th>Id Banco</th>
+				<th>Sucursal</th>
+				<th>Ubicacion</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="banco : ${bancos}">
+				<td th:text = "${banco.getId()}"></td>
+				<td th:text = "${banco.getSucursal()}"></td>
+				<td th:text = "${banco.getUbicacion()}"></td>
+				<td> <a th:href="@{form/} + ${banco.getId()}" th:text="Editar"></a> </td>
+				<td> <a th:href="@{eliminar/} + ${banco.getId()}" th:text="Eliminar" onclick="return confirm('¿Desea eliminar el banco?');"></a> </td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

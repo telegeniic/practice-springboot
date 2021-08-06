@@ -11,9 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotEmpty;
-
-import org.springframework.lang.NonNull;
 
 @Entity
 @Table(name = "tarjetas")
@@ -22,33 +19,30 @@ public class Tarjeta implements Serializable {
 	private static final long serialVersionUID = 2564315752569370407L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY) 
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@Column(name = "numero_tarjeta", length = 16)
-	@NonNull
-	@NotEmpty
 	private String numeroTarjeta;
 
-	@Column(name = "numedo_de_cuenta")
-	@NonNull
-	@NotEmpty
-	private String numeroDeCuenta;
-
 	@Column(length = 3)
-	@NonNull
-	@NotEmpty
 	private String icv;
 
-	@Column
-	@NonNull
-	@NotEmpty
+	@Column()
 	private String nombre;
 
-	@JoinColumn(name = "tarjeta", referencedColumnName = "id_cuenta", nullable = false)
+	@JoinColumn(name = "cuenta", referencedColumnName = "id", nullable = false)
 	@ManyToOne(optional = false, fetch = FetchType.LAZY)
-	@NonNull
 	private Cuenta cuenta;
+
+	/*
+	 * @Column private long idCuentaAux;
+	 * 
+	 * public long getIdCuentaAux() { return idCuentaAux; }
+	 * 
+	 * public void setIdCuentaAux(long idCuentaAux) { this.idCuentaAux =
+	 * idCuentaAux; }
+	 */
 
 	public Cuenta getCuenta() {
 		return this.cuenta;
@@ -74,14 +68,6 @@ public class Tarjeta implements Serializable {
 		this.numeroTarjeta = numeroTarjeta;
 	}
 
-	public String getNumeroDeCuenta() {
-		return numeroDeCuenta;
-	}
-
-	public void setNumeroDeCuenta(String numeroDeCuenta) {
-		this.numeroDeCuenta = numeroDeCuenta;
-	}
-
 	public String getIcv() {
 		return icv;
 	}
@@ -90,16 +76,16 @@ public class Tarjeta implements Serializable {
 		this.icv = icv;
 	}
 
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 	public String getNombre() {
-		return nombre;
+		return this.nombre;
 	}
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
 	}
 
 }

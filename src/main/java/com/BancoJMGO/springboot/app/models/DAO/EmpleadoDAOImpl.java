@@ -20,7 +20,7 @@ public class EmpleadoDAOImpl implements IEmpleadoDAO {
     @Transactional(readOnly = true)
     @Override
     public List<Empleado> findALL() {
-        return em.createQuery("from empleados").getResultList();
+        return em.createQuery("from Empleado").getResultList();
     }
 
     @Transactional
@@ -46,11 +46,11 @@ public class EmpleadoDAOImpl implements IEmpleadoDAO {
     }
 
     @SuppressWarnings("unchecked")
-	@Transactional(readOnly = true)
-	@Override
-	public List<Empleado> findByCharge(String Charge) {
-		// TODO Auto-generated method stub
-		return em.createQuery("SELECT puesto FROM empleados WHERE puesto = :value").setParameter("value", Charge).getResultList();
-	}
+    @Transactional(readOnly = true)
+    @Override
+    public List<Empleado> findByCharge(String Charge) {
+        return em.createQuery("SELECT puesto FROM Empleado WHERE puesto = :value").setParameter("value", Charge)
+                .getResultList();
+    }
 
 }

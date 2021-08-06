@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.BancoJMGO.springboot.app.models.entity.Banco;
 
-@Repository
+@Repository("bancoDao")
 public class BancoDAOImpl implements IBancoDAO{
 	
 	@PersistenceContext
@@ -20,7 +20,7 @@ public class BancoDAOImpl implements IBancoDAO{
 	@Transactional(readOnly = true)
 	@Override
 	public List<Banco> findALL() {
-		return em.createQuery("from bancos").getResultList();
+		return em.createQuery("from Banco").getResultList();
 	}
 
 	@Transactional

@@ -2,6 +2,7 @@ package com.BancoJMGO.springboot.app.models.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -11,10 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotEmpty;
 import javax.persistence.ManyToOne;
-
-import org.springframework.lang.NonNull;
 
 @Entity
 @Table(name = "clientes")
@@ -23,43 +21,38 @@ public class Cliente implements Serializable {
 	private static final long serialVersionUID = -5578178149734565815L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY) 
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@Column
-	@NonNull
-	@NotEmpty
 	private String nombre;
 
 	@Column
-	@NonNull
-	@NotEmpty
 	private String apellido;
 
 	@Column(name = "numero_telefonico")
-	@NonNull
-	@NotEmpty
 	private String numeroTelefonico;
 
 	@Column
-	@NonNull
-	@NotEmpty
 	private String email;
 
-	@Column(name = "numero_de_cuenta")
-	@NonNull
-	@NotEmpty
-	private String numeroDeCuenta;
+	@Column
+	private long idBancoAux;
 
-	@JoinColumn(name = "banco", referencedColumnName = "id_banco", nullable = false)
+	@JoinColumn(name = "banco", referencedColumnName = "id", nullable = true)
 	@ManyToOne(optional = false, fetch = FetchType.LAZY)
-	@NonNull
 	private Banco banco;
 
-	@JoinColumn(name = "cuenta", referencedColumnName = "id_cuenta", nullable = false)
-	@OneToOne(optional = false, fetch = FetchType.LAZY)
-	@NonNull
+	@OneToOne(fetch = FetchType.LAZY, mappedBy = "cliente", cascade = CascadeType.MERGE)
 	private Cuenta cuenta;
+
+	public long getIdBancoAux() {
+		return idBancoAux;
+	}
+
+	public void setIdBancoAux(long idBancoAux) {
+		this.idBancoAux = idBancoAux;
+	}
 
 	public Banco getBanco() {
 		return banco;
@@ -115,14 +108,6 @@ public class Cliente implements Serializable {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	public String getNumeroDeCuenta() {
-		return numeroDeCuenta;
-	}
-
-	public void setNumeroDeCuenta(String numeroDeCuenta) {
-		this.numeroDeCuenta = numeroDeCuenta;
 	}
 
 	public static long getSerialversionuid() {

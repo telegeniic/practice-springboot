@@ -45,10 +45,22 @@ public class Empleado implements Serializable {
 	@NotEmpty
 	private int antiguedad;
 
-	@JoinColumn(name = "banco", referencedColumnName = "id_banco", nullable = false)
+	@JoinColumn(name = "banco", referencedColumnName = "id", nullable = true)
 	@ManyToOne(optional = false, fetch = FetchType.LAZY)
 	@NonNull
 	private Banco banco;
+	
+	@Column
+	@NonNull
+	private long idBancoAux;
+
+	public long getIdBancoAux() {
+		return idBancoAux;
+	}
+
+	public void setIdBancoAux(long idBancoAux) {
+		this.idBancoAux = idBancoAux;
+	}
 
 	public Banco getBanco() {
 		return banco;

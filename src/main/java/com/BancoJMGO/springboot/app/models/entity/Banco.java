@@ -11,10 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotEmpty;
 import javax.persistence.CascadeType;
-
-import org.springframework.lang.NonNull;
 
 @Entity
 @Table(name = "bancos")
@@ -23,33 +20,20 @@ public class Banco implements Serializable {
 	private static final long serialVersionUID = 8979615319274357131L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY) 
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@Column
-	@NonNull
-	@NotEmpty
 	private String sucursal;
 
 	@Column
-	@NotEmpty
-	@NotEmpty
 	private String ubicacion;
 
-	@Column(name = "cantidad_de_empleados")
-	@NonNull
-	@NotEmpty
-	private Empleado[] cantidadDeEmpleados;
-
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "banco", cascade = CascadeType.MERGE)
-	@NonNull
 	private List<Cliente> clientes;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "banco", cascade = CascadeType.MERGE)
-	@NonNull
 	private List<Empleado> empleados;
-	
-	
 
 	public Long getId() {
 		return id;
@@ -93,14 +77,6 @@ public class Banco implements Serializable {
 
 	public void setUbicacion(String ubicacion) {
 		this.ubicacion = ubicacion;
-	}
-
-	public Empleado[] getCantidadDeEmpleados() {
-		return cantidadDeEmpleados;
-	}
-
-	public void setCantidadDeEmpleados(Empleado[] cantidadDeEmpleados) {
-		this.cantidadDeEmpleados = cantidadDeEmpleados;
 	}
 
 }

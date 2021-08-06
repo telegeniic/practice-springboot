@@ -20,7 +20,7 @@ public class ClienteDAOImpl implements IClienteDAO {
     @Transactional(readOnly = true)
     @Override
     public List<Cliente> findALL() {
-        return em.createQuery("from clientes").getResultList();
+        return em.createQuery("from Cliente").getResultList();
     }
 
     @Transactional
@@ -46,10 +46,10 @@ public class ClienteDAOImpl implements IClienteDAO {
     }
 
     @Transactional(readOnly = true)
-	@Override
-	public Cliente findByPhone(String phone) {
-		// TODO Auto-generated method stub
-		return (Cliente) em.createQuery("SELECT numero_telefonico FROM clientes WHERE numero_telefonico = :value").setParameter("value", phone).getSingleResult();
-	}
+    @Override
+    public Cliente findByPhone(String phone) {
+        return (Cliente) em.createQuery("SELECT numero_telefonico FROM Cliente WHERE numero_telefonico = :value")
+                .setParameter("value", phone).getSingleResult();
+    }
 
 }

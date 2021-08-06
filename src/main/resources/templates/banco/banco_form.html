@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title th:text="${titulo}"></title>
+	</head>
+	<body>
+	
+		<h3 th:text="${titulo}"></h3>
+		<br>
+	
+		<p th:if="${result}" th:text="${mensaje}"></p>
+		
+		<div>
+			<form th:action="@{/banco/form}" th:object="${banco}" method="post">
+				<table>
+					<tr>
+						<td>Sucursal</td>
+						<td><input type="text" th:field="*{sucursal}" required></td>
+					</tr>
+					<tr>
+						<td>Ubicacion</td>
+						<td><input type="text" th:field="*{ubicacion}" required></td>
+					</tr>
+				</table>
+				<br>
+				<input type="submit" value="Guardar">
+			</form>
+		</div>
+		<a href="/banco/list">Lista</a>
+		<a href="/">Index</a>
+		
+	</body>
+</html>
